@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CryptocurrencyTracker</string>
+
+    <string name="symbol">Symbol:</string>
+    <string name="algorithm">Algorithm:</string>
+    <string name="description">Description:</string>
+    <string name="proof_type">Proof type:</string>
+    <string name="value_by_day">Currency value by day (compared to BTC):</string>
+
+    <string-array name="titles_details_tabs">
+        <item name="title_info">Info</item>
+        <item name="title_history">History</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
