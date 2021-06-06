@@ -10,8 +10,8 @@ data class CoinHistoryDto(
     val time: Long,
     @SerializedName("open")
     @Expose
-    val open: Float,
+    val open: Double,
     @SerializedName("close")
     @Expose
-    val close: Float
+    val close: Double
 )

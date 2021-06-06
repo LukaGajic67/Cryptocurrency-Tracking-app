@@ -1,12 +1,12 @@
 package com.example.cryptocurrencytracker.data
 
-import android.util.Log
 import com.example.cryptocurrencytracker.data.local.CoinDao
 import com.example.cryptocurrencytracker.data.remote.CoinRemoteSource
 import com.example.cryptocurrencytracker.model.Coin
 import com.example.cryptocurrencytracker.model.Result
 import com.example.cryptocurrencytracker.model.dto.CoinHistoryDto
 import com.example.cryptocurrencytracker.utils.CoinMapper
+import com.example.cryptocurrencytracker.utils.HistoryType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -40,9 +40,13 @@ class DefaultCoinRepository @Inject constructor(
         }.flowOn(Dispatchers.IO).conflate()
     }
 
-    override suspend fun getCoinHistoryDaily(sym: String): Flow<List<CoinHistoryDto>?> {
+    override suspend fun getCoinHistory(
+        type: HistoryType,
+        sym: String,
+        limit: String
+    ): Flow<List<CoinHistoryDto>?> {
         return flow {
-            val result = coinRemoteSource.fetchCoinHistory(sym)
+            val result = coinRemoteSource.fetchCoinHistory(type, sym, limit)
             if (result.status == Result.Status.SUCCESS) {
                 emit(result.data?.results?.results)
             }

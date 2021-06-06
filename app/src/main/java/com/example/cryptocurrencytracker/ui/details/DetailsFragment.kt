@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import androidx.viewpager2.widget.ViewPager2
 import com.example.cryptocurrencytracker.R
 import com.example.cryptocurrencytracker.databinding.FragmentDetailsBinding
 import com.example.cryptocurrencytracker.ui.adapter.DetailsViewPagerAdapter
@@ -20,6 +19,7 @@ class DetailsFragment : Fragment() {
     private val detailsViewModel: DetailsViewModel by activityViewModels()
     private val args: DetailsFragmentArgs by navArgs()
     private lateinit var titles: Array<String>
+    private lateinit var adapter: DetailsViewPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,21 +31,19 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        detailsViewModel.loadCoinInfo(args.sym)
-        detailsViewModel.loadCoinPrice(args.sym)
-        detailsViewModel.loadCoinHistory(args.sym)
+        detailsViewModel.sym = args.sym
+        detailsViewModel.loadCoinInfo()
+        detailsViewModel.loadCoinPrice()
+        detailsViewModel.loadCoinHistory()
         setupTabs()
     }
 
-
     private fun setupTabs() {
         titles = resources.getStringArray(R.array.titles_details_tabs)
-        val adapter =
-            activity?.let { DetailsViewPagerAdapter(it.supportFragmentManager, lifecycle) }
-        binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        adapter = DetailsViewPagerAdapter(this)
         binding.viewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = titles.get(position)
+            tab.text = titles[position]
         }.attach()
     }
 

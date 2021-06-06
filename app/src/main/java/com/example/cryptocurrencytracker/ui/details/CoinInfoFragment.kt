@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.example.cryptocurrencytracker.R
 import com.example.cryptocurrencytracker.databinding.FragmentCoinInfoBinding
 import com.example.cryptocurrencytracker.model.Coin
 import com.example.cryptocurrencytracker.model.Result
+import com.example.cryptocurrencytracker.utils.UrlHelper
 
 class CoinInfoFragment : Fragment() {
     private lateinit var binding: FragmentCoinInfoBinding
@@ -65,6 +67,12 @@ class CoinInfoFragment : Fragment() {
         val proofType = resources.getString(R.string.proof_type) + " ${coin.proofType}"
         binding.textViewProofType.text = proofType
         binding.textViewDescription.text = coin.description
+        coin.imageUrl?.let {
+            Glide.with(this)
+                .load(UrlHelper.buildImageUrl(it))
+                .fitCenter()
+                .into(binding?.let { it.imageViewCoin })
+        }
     }
 
     private fun updateUiCoinPrice(coinsPriceResponse: Map<String, Double>) {

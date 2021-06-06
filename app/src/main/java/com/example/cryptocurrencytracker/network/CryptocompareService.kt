@@ -19,7 +19,21 @@ interface CryptocompareService {
     @GET("v2/histoday")
     suspend fun getCoinHistoryDay(
         @Query("fsym") sym: String,
-        @Query("tsym") tsym: String = "BTC",
-        @Query("limit") limit: String = "10"
+        @Query("limit") limit: String,
+        @Query("tsym") tsym: String = "BTC"
+    ): Response<CoinHistoryResponseOuterClass>
+
+    @GET("v2/histohour")
+    suspend fun getCoinHistoryHour(
+        @Query("fsym") sym: String,
+        @Query("limit") limit: String,
+        @Query("tsym") tsym: String = "BTC"
+    ): Response<CoinHistoryResponseOuterClass>
+
+    @GET("v2/histominute")
+    suspend fun getCoinHistoryMinute(
+        @Query("fsym") sym: String,
+        @Query("limit") limit: String,
+        @Query("tsym") tsym: String = "BTC"
     ): Response<CoinHistoryResponseOuterClass>
 }

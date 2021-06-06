@@ -8,6 +8,7 @@ import com.example.cryptocurrencytracker.data.CoinRepository
 import com.example.cryptocurrencytracker.model.Coin
 import com.example.cryptocurrencytracker.model.Result
 import com.example.cryptocurrencytracker.model.dto.CoinHistoryDto
+import com.example.cryptocurrencytracker.utils.HistoryType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -22,8 +23,11 @@ class DetailsViewModel @Inject constructor(private val coinRepository: CoinRepos
     val coinPrices: LiveData<Result<Map<String, Double>>> get() = _coinPrices
     private val _coinHistory = MutableLiveData<List<CoinHistoryDto>>()
     val coinHistory: LiveData<List<CoinHistoryDto>> get() = _coinHistory
+    var sym: String = "BTC"
+    var limit: String = "7"
+    var type: HistoryType = HistoryType.DAY
 
-    fun loadCoinInfo(sym: String) {
+    fun loadCoinInfo() {
         viewModelScope.launch {
             coinRepository.getCoin(sym).collect {
                 _coin.value = it
@@ -31,7 +35,7 @@ class DetailsViewModel @Inject constructor(private val coinRepository: CoinRepos
         }
     }
 
-    fun loadCoinPrice(sym: String) {
+    fun loadCoinPrice() {
         viewModelScope.launch {
             coinRepository.getCoinPrice(sym).collect {
                 _coinPrices.value = it
@@ -39,9 +43,9 @@ class DetailsViewModel @Inject constructor(private val coinRepository: CoinRepos
         }
     }
 
-    fun loadCoinHistory(sym: String) {
+    fun loadCoinHistory() {
         viewModelScope.launch {
-            coinRepository.getCoinHistoryDaily(sym).collect {
+            coinRepository.getCoinHistory(type, sym, limit).collect {
                 _coinHistory.value = it
             }
         }

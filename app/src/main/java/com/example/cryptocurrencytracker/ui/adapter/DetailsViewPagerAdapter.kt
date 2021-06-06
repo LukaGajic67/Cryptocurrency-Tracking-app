@@ -7,8 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cryptocurrencytracker.ui.details.CoinHistoryFragment
 import com.example.cryptocurrencytracker.ui.details.CoinInfoFragment
 
-class DetailsViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
+class DetailsViewPagerAdapter(fragment : Fragment) :
+    FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
         return 2
     }

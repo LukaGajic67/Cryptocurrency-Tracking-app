@@ -17,14 +17,31 @@
 
             <TextView
                 android:id="@+id/textView_name"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-black"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/imageView_coin"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Full name" />
+
+            <ImageView
+                android:id="@+id/imageView_coin"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textView_name"
+                app:layout_constraintTop_toTopOf="@id/textView_name" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_name_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="textView_name, imageView_coin" />
 
             <TextView
                 android:id="@+id/textView_symbol"
@@ -34,7 +51,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/symbol"
                 android:textSize="15sp"
-                app:layout_constraintTop_toBottomOf="@id/textView_name" />
+                app:layout_constraintTop_toBottomOf="@id/barrier_name_image" />
 
             <TextView
                 android:id="@+id/textView_algorithm"
