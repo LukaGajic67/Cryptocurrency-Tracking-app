@@ -3,6 +3,7 @@ package com.example.cryptocurrencytracker.data
 import com.example.cryptocurrencytracker.model.Coin
 import com.example.cryptocurrencytracker.model.Result
 import com.example.cryptocurrencytracker.model.dto.CoinHistoryDto
+import com.example.cryptocurrencytracker.utils.HistoryType
 import kotlinx.coroutines.flow.Flow
 
 interface CoinRepository {
@@ -29,5 +30,9 @@ interface CoinRepository {
     /**
      * Fetches coin daily history from the remote source
      */
-    suspend fun getCoinHistoryDaily(sym: String): Flow<List<CoinHistoryDto>?>
+    suspend fun getCoinHistory(
+        type: HistoryType,
+        sym: String,
+        limit: String
+    ): Flow<List<CoinHistoryDto>?>
 }

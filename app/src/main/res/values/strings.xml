@@ -5,11 +5,39 @@
     <string name="algorithm">Algorithm:</string>
     <string name="description">Description:</string>
     <string name="proof_type">Proof type:</string>
-    <string name="value_by_day">Currency value by day (compared to BTC):</string>
+    <string name="currency_value_history">Currency value history (compared to BTC):</string>
+    <string name="select_type_label">Select the time units for displayed data (days, hours, minutes):</string>
+    <string name="select_limit_label">Select the time frame for displayed data:</string>
+
+    <string name="button_load_data">Load Data</string>
 
     <string-array name="titles_details_tabs">
         <item name="title_info">Info</item>
         <item name="title_history">History</item>
+    </string-array>
+
+    <string-array name="coin_history_types">
+        <item name="type_day">Day</item>
+        <item name="type_hour">Hour</item>
+        <item name="type_minute">Minute</item>
+    </string-array>
+
+    <string-array name="coin_limit_day">
+        <item name="limit_one_week">One week</item>
+        <item name="limit_two_weeks">Two weeks</item>
+        <item name="limit_one_month">One month</item>
+    </string-array>
+
+    <string-array name="coin_limit_hour">
+        <item name="limit_one_day">One day</item>
+        <item name="limit_three_days">Three days</item>
+        <item name="limit_one_week">One week</item>
+    </string-array>
+
+    <string-array name="coin_limit_minute">
+        <item name="limit_one_hour">One hour</item>
+        <item name="limit_three_hours">Three hours</item>
+        <item name="limit_one_day">One day</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

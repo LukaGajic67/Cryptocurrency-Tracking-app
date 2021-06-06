@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cryptocurrencytracker.databinding.CoinItemBinding
 import com.example.cryptocurrencytracker.model.Coin
+import com.example.cryptocurrencytracker.utils.UrlHelper
 
 class CoinListAdapter :
     ListAdapter<Coin, CoinListAdapter.CoinViewHolder>(CoinAdapterDiffUtilItemCallback) {
@@ -43,6 +45,12 @@ class CoinListAdapter :
             boundCoin = coin
             binding.textViewName.text = coin.fullName
             binding.textViewSymbol.text = coin.symbol
+            coin.imageUrl?.let {
+                Glide.with(binding.let { binding -> binding.root })
+                    .load(UrlHelper.buildImageUrl(it))
+                    .fitCenter()
+                    .into(binding.let { binding -> binding.imageViewCoin })
+            }
         }
     }
 

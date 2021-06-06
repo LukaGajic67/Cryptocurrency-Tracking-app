@@ -10,7 +10,7 @@ object DateAndTimeHelper {
      */
     @SuppressLint("SimpleDateFormat")
     fun formatMillisecondsToDateString(milliseconds: Long): String {
-        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val formatter = SimpleDateFormat("dd MMM - HH:mm:ss")
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = milliseconds
         return formatter.format(calendar.time)
